@@ -1,0 +1,35 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.*.local
+/.env.*.php
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/col/csv/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+.phpunit.cache/
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+#phpstorm
+.idea/
+.DS_Store
+
+#Composer
+composer.phar
+
+#Sonar
+sonar-project.properties
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

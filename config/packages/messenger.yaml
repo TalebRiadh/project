@@ -1,0 +1,12 @@
+# config/packages/messenger.yaml
+framework:
+  messenger:
+    transports:
+      redis_mailer:
+        dsn: '%env(MONGODB_URL)%'
+        options:
+          uriOptions: []
+          driverOptions: []
+          database: '%env(MONGODB_DB)%' # required
+          redeliver_timeout: 4800 # default is 3600
+          enable_writeConcern_majority: false # default is true
