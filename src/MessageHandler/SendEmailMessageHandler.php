@@ -44,20 +44,15 @@ class SendEmailMessageHandler
                 ];
             }
         }
-
-        if ($message->getCanal() == CanalType::EMAIL){
-            $template = 'mails/canal1.html.twig';
-        }else{
-            $template = 'mails/canal2.html.twig';
-        }
-
+        sleep(5);
         $email = (new TemplatedEmail())
             ->from(new Address('your_email@example.com', 'Your Name'))
             ->to(new Address($message->getEmail()))
             ->subject('Bienvenue')
-            ->htmlTemplate($template)
+            ->htmlTemplate("mails/template.html.twig")
             ->context([
                 'name' => $message->getNom(),
+                'canal' => $message->getCanal(),
                 'files' => $fileData,
             ]);
 

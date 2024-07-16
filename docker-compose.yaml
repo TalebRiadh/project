@@ -2,6 +2,7 @@ version: '3'
 services:
   mailhog:
     image: 'mailhog/mailhog:latest'
+    restart: always
     ports:
       - '${FORWARD_MAILHOG_PORT:-1025}:1025'
       - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
@@ -13,9 +14,11 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes:
       - cache:/data
+    networks:
+      - docker_workspace_network
 volumes:
   cache:
     driver: local
