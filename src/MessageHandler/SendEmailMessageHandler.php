@@ -1,11 +1,10 @@
 <?php
 namespace App\MessageHandler;
 
-use App\Enum\CanalType;
 use App\Message\SendEmailMessage;
-use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
@@ -20,7 +19,7 @@ class SendEmailMessageHandler
     {
     }
 
-    public function __invoke(SendEmailMessage $message)
+    public function __invoke(SendEmailMessage $message): void
     {
         $this->logger->info('Starting email send process');
 
@@ -32,7 +31,7 @@ class SendEmailMessageHandler
         $files = scandir($staticFilePath);
         if ($files === false) {
             $this->logger->error('Cannot read directory: ' . $staticFilePath);
-            throw new Exception('Le répertoire ' . $staticFilePath . ' ne peut pas être lu.');
+            throw new FileLocatorFileNotFoundException('Le répertoire ' . $staticFilePath . ' ne peut pas être lu.');
         }
 
         $fileData = [];
