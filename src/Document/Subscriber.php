@@ -10,6 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[MongoDB\Document(collection: 'subscriber')]
 class Subscriber
 {
+    public function __construct(){
+        $this->setSubscribedAt();
+    }
      final public const CANAL_CHOICES = ["in", "out"];
     #[MongoDB\Id]
     private $id;
@@ -60,9 +63,9 @@ class Subscriber
         return $this->subscribedAt;
     }
 
-    public function setSubscribedAt(\DateTime $subscribedAt): self
+    public function setSubscribedAt(): self
     {
-        $this->subscribedAt = $subscribedAt;
+        $this->subscribedAt = new \DateTime('now');
         return $this;
     }
 

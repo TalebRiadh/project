@@ -43,7 +43,6 @@ class SendEmailMessageHandler
                 ];
             }
         }
-        sleep(5);
         $email = (new TemplatedEmail())
             ->from(new Address('your_email@example.com', 'Your Name'))
             ->to(new Address($message->getEmail()))
