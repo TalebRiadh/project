@@ -34,7 +34,7 @@ class SubscriberApiController extends AbstractController
         $dm->flush();
         // Essayer d'envoyer l'email
         try {
-            $bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getNom(), $subscriber->getCanal()));
+            $bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getPrenom(), $subscriber->getCanal()));
             return new JsonResponse([
                 'message' => 'Inscription réussie, e-mail envoyé.',
             ], Response::HTTP_CREATED);

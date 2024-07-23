@@ -44,12 +44,12 @@ class SendEmailMessageHandler
             }
         }
         $email = (new TemplatedEmail())
-            ->from(new Address('your_email@example.com', 'Your Name'))
+            ->from(new Address('contact@prizy.co', 'Prizy.co'))
             ->to(new Address($message->getEmail()))
-            ->subject('Bienvenue')
+            ->subject('no-reply')
             ->htmlTemplate("mails/template.html.twig")
             ->context([
-                'name' => $message->getNom(),
+                'prenom' => $message->getPrenom(),
                 'canal' => $message->getCanal(),
                 'files' => $fileData,
             ]);
