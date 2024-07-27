@@ -1,21 +1,18 @@
 <?php
+// src/MessageHandler/SendEmailMessageHandler.php
+
 namespace App\MessageHandler;
 
 use App\Message\SendEmailMessage;
+use App\Service\TemplateEmail;
 use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 #[AsMessageHandler]
 class SendEmailMessageHandler
 {
 
-
-    public function __construct(private readonly MailerInterface $mailer, private readonly ParameterBagInterface $params, private readonly LoggerInterface $logger)
+    public function __construct(private readonly TemplateEmail $templateEmail, private readonly LoggerInterface $logger)
     {
     }
 
@@ -23,44 +20,16 @@ class SendEmailMessageHandler
     {
         $this->logger->info('Starting email send process');
 
-        // Chemin vers le répertoire des fichiers statiques
-        $staticFilePath = $this->params->get('kernel.project_dir') . '/public/files/';
-        $fileUrlBase = $this->params->get('APP_URL') . '/files/';
+        try {
+            $email = $this->templateEmail->createEmail($message->getEmail(), $message->getPrenom(), $message->getCanal());
 
-        // Parcourir tous les fichiers dans le répertoire
-        $files = scandir($staticFilePath);
-        if ($files === false) {
-            $this->logger->error('Cannot read directory: ' . $staticFilePath);
-            throw new FileLocatorFileNotFoundException('Le répertoire ' . $staticFilePath . ' ne peut pas être lu.');
+            $this->logger->info('Sending email to ' . $message->getEmail());
+            $this->templateEmail->sendEmail($email);
+            $this->logger->info('Email sent successfully');
+        } catch (\Exception $e) {
+            $this->logger->error('Error sending email: ' . $e->getMessage());
+            throw $e;
         }
-
-        $fileData = [];
-        foreach ($files as $file) {
-            if (is_file($staticFilePath . $file) && is_readable($staticFilePath . $file)) {
-                $fileData[] = [
-                    'name' => $file,
-                    'url' => $fileUrlBase . $file
-                ];
-            }
-        }
-        $email = (new TemplatedEmail())
-            ->from(new Address('contact@prizy.co', 'Prizy.co'))
-            ->to(new Address($message->getEmail()))
-            ->subject('no-reply')
-            ->htmlTemplate("mails/template.html.twig")
-            ->context([
-                'prenom' => $message->getPrenom(),
-                'canal' => $message->getCanal(),
-                'files' => $fileData,
-            ]);
-
-        foreach ($fileData as $file) {
-            $email->attachFromPath($staticFilePath . $file['name'], $file['name']);
-        }
-
-        $this->logger->info('Sending email to ' . $message->getEmail());
-        $this->mailer->send($email);
-        $this->logger->info('Email sent successfully');
     }
-
 }
+
