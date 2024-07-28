@@ -12,9 +12,6 @@
             "./src/Document/.gitignore"
         ]
     },
-    "emag-tech-labs/messenger-mongo-bundle": {
-        "version": "1.3.0"
-    },
     "phpunit/phpunit": {
         "version": "11.2",
         "recipe": {

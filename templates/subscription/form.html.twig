@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Formulaire de souscription</h2>
+
+        {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.tel) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.souscription) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

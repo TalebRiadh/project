@@ -18,7 +18,7 @@ class Subscriber
     private $id;
 
     #[MongoDB\Field(type: "string")]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message:"L'email est obligatoire.")]
     #[Assert\Email(message: "l'email n'est pas validé")]
     #[UniqueEmail]
     private string $email;

@@ -5,28 +5,23 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Psr\Log\LoggerInterface;
 
 class TemplateEmail
 {
-    private $params;
-    private $mailer;
-    private $logger;
 
-    public function __construct(ParameterBagInterface $params, MailerInterface $mailer, LoggerInterface $logger)
-    {
-        $this->params = $params;
-        $this->mailer = $mailer;
-        $this->logger = $logger;
-    }
+
+    public function __construct(private readonly ParameterBagInterface $params, private readonly MailerInterface $mailer, private readonly LoggerInterface $logger){}
 
     public function createEmail(string $email, string $prenom, string $canal): TemplatedEmail
     {
+        $staticFilePath = null;
         $fileData = null;
 
-        if ($canal === 'out') {
+        if ($canal === 'in') {
             $staticFilePath = $this->params->get('kernel.project_dir') . '/public/files/guide.pdf';
             $fileUrlBase = $this->params->get('APP_URL') . '/files/guide.pdf';
 
@@ -54,13 +49,21 @@ class TemplateEmail
             ]);
 
         if ($fileData !== null) {
-            $email->attachFromPath($staticFilePath, 'sample.pdf');
+            $email->attachFromPath($staticFilePath, 'guide.pdf');
         }
         return $email;
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function sendEmail(TemplatedEmail $email): void
     {
-        $this->mailer->send($email);
+        try{
+            $this->mailer->send($email);
+        }catch (TransportExceptionInterface $e){
+            $this->logger->error('Error sending email: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }
