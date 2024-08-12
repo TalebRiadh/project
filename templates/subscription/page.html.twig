@@ -1,0 +1,465 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--Begin::Header Section-->
+    <header class="header animated-section">
+        <img
+                class="logo"
+                loading="lazy"
+                alt="Logo Prizy"
+                src="https://firebasestorage.googleapis.com/v0/b/signatureemail-8b0ba.appspot.com/o/logoprizy.png?alt=media&token=0b9b8d8c-18c1-47d2-b183-da655f4242db"
+        />
+
+        <nav class="menu">
+            <a href="#product" class="menu-item active">Produit</a>
+            <a href="#features" class="menu-item">Fonctionnalités</a>
+            <a href="#advantages" class="menu-item">Avantages</a>
+            <a href="#contact" class="menu-item">Contact</a>
+        </nav>
+
+        <a href="#demo" class="outlined-button">Demander une Démo</a>
+    </header>
+    <!--End::Header Section-->
+
+    <div class="shadow"></div>
+
+    <!--Begin::Hero Section-->
+    <section class="container p-5 animated-section">
+        {% for message in app.flashes('success') %}
+            <label class="container px-5">
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert success">
+                    <span class="alertClose">&times;</span>
+                    <strong>Demande envoyée avec succès !</strong> Veuillez vérifier votre
+                    email, nous vous avons envoyé un message pour planifier votre démo.
+                </div>
+            </label>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <label class="container px-5">
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert error">
+                    <span class="alertClose">&times;</span>
+                    <strong
+                    >Une erreur s'est produite lors de l'envoi de votre demande !
+                    </strong>
+                    Veuillez réessayer plus tard ou contacter notre support si le problème
+                    persiste.
+                </div>
+            </label>
+        {% endfor %}
+        <!--begin::Heading-->
+        <div class="centered-heading" style="max-width: 1000px; margin: 2rem 0">
+            <h1 class="title">
+                <span>Transformez vos campagnes de trade marketing avec Prizy</span>
+                <span class="winbox">WinBox</span>
+            </h1>
+            <div class="subtitle">
+                Des solutions innovantes, efficaces et engageantes pour vos besoins
+                en trade marketing
+            </div>
+        </div>
+        <!--end::Heading-->
+
+        <!--begin::Action-->
+        <a href="#demo" class="default-button">Obtenir une démo gratuite</a>
+        <!--begin::Action-->
+    </section>
+    <!--End::Hero Section-->
+
+    <!--Begin::Problem Statement Section-->
+    <section class="leftRightContainer p-5 animated-section" id="product">
+        <div class="heading">
+            <div class="tag">Énoncé du Problème</div>
+            <h1 class="title">
+                <span>Les défis du </span>
+                <span class="pink">trade marketing</span>
+                <span> moderne</span>
+            </h1>
+            <p class="paragraph">
+                Chez Prizy, nous comprenons les complexités de l'organisation de
+                campagnes de trade marketing réussies.
+            </p>
+            <p class="paragraph">
+                Que vous cherchiez à augmenter les ventes, améliorer la notoriété de
+                la marque ou augmenter l'engagement des clients, notre solution
+                innovante est conçue pour relever ces défis de front.
+            </p>
+        </div>
+        <div class="testimonial-container">
+            <h2 class="testimonial">
+                “ Organiser des campagnes de trade marketing est un véritable défi.
+                La coordination des différentes étapes, la collecte des
+                participations et la gestion des prix demandent énormément de temps
+                et d'efforts. C'est dans ce contexte exigeant que nous avons eu
+                l'opportunité de collaborer avec Prizy, notre partenaire de cadeaux
+                dématérialisés, et l'expérience a été remarquable. “
+            </h2>
+
+            <p>
+                Anis Manachi &mdash; Middle East and East Africa Marketing Manager -
+                Lesaffre Gulf FZE
+            </p>
+        </div>
+    </section>
+    <!--End::Problem Statement Section-->
+
+    <!--Begin::Features Section-->
+    <section
+            class="container p-5 animated-section"
+            style="background-color: #ffe6cc"
+            id="features"
+    >
+        <div class="centered-heading">
+            <div class="tag">Fonctionnalités</div>
+            <h1 class="title">
+                <span>Fonctionnalités qui font </span>
+                <span class="pink">la différence</span>
+            </h1>
+            <div class="subtitle">
+                Des outils puissants pour optimiser vos compagnes
+            </div>
+        </div>
+
+        <div class="leftRightContainer">
+            <div class="feature-items">
+                <div class="feature-item">
+                    <div class="feature-heading">
+                        <div class="feature-title">Génération de codes gagnants</div>
+                        <i class="pink fa fa-qrcode"></i>
+                    </div>
+                    <div class="feature-content">
+                        Créez facilement des codes gagnants uniques pour chaque campagne
+                        (QR codes, codes-barres, séries numériques).
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-heading">
+                        <div class="feature-title">Landing page personnalisée</div>
+                        <i class="pink fa fa-globe"></i>
+                    </div>
+                    <div class="feature-content">
+                        Concevez une page d'inscription engageante pour collecter les
+                        données des participants de manière transparente.
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-heading">
+                        <div class="feature-title">Suivi des participants</div>
+                        <i class="pink fa fa-file-text"></i>
+                    </div>
+                    <div class="feature-content">
+                        Gérez les inscriptions de manière centrale avec des fichiers
+                        Excel exportables
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-heading">
+                        <div class="feature-title">Distribution des récompenses</div>
+                        <i class="pink fa fa-gift"></i>
+                    </div>
+                    <div class="feature-content">
+                        Que ce soit des prix physiques ou nos cartes-cadeaux 100%
+                        numériques, distribuez les récompenses sans effort
+                    </div>
+                </div>
+            </div>
+            <div class="feature-images">
+                <img
+                        class="feature-image"
+                        loading="lazy"
+                        alt=""
+                        src="assets/images/features-image.png"
+                />
+            </div>
+        </div>
+    </section>
+    <!--End::Features Section-->
+
+    <!--Begin::CTA Section-->
+    <section class="container p-5 animated-section">
+        <div class="leftRightContainer cta-container">
+            <div class="heading">
+                <h1 class="title">Prêt à élever votre trade marketing ?</h1>
+                <div class="subtitle">
+                    Découvrez la puissance de Prizy WinBox et transformez vos
+                    campagnes dès aujourd'hui.
+                </div>
+            </div>
+            <a href="#demo" class="default-button"
+            >Réservez votre démo gratuite</a
+            >
+        </div>
+    </section>
+    <!--End::CTA Section-->
+
+    <!--Begin::Advantages Section-->
+    <section class="container p-5 animated-section" id="advantages">
+        <div class="centered-heading">
+            <div class="tag">Avantages</div>
+            <h1 class="title">
+                <span>Pourquoi choisir</span>
+                <span class="pink">Prizy WinBox?</span>
+            </h1>
+            <div class="subtitle">Avantages qui boostent vos compagnes</div>
+        </div>
+
+        <div class="advantages">
+            <div class="card">
+                <div
+                        class="card-heading"
+                        style="background-color: #ffeecc; color: #ffb629"
+                >
+                    <i class="icon fa fa-lightbulb-o" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Simplicité et efficacité</h3>
+                    <div class="card-subtitle">
+                        Une solution numérique clé en main qui simplifie la logistique
+                        et améliore l'efficacité.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div
+                        class="card-heading"
+                        style="background-color: #e9f5ff; color: #0993fe"
+                >
+                    <i class="icon fa fa-hand-pointer-o" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Flexibilité</h3>
+                    <div class="card-subtitle">
+                        Adaptable aux campagnes de toutes tailles et de tous budgets
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div
+                        class="card-heading"
+                        style="background-color: #ffebf9; color: #f18fd7"
+                >
+                    <i class="icon fa fa-heart-o" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Engagement amélioré</h3>
+                    <div class="card-subtitle">
+                        Créez des campagnes plus engageantes avec des outils interactifs
+                        et des récompenses attractives
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div
+                        class="card-heading"
+                        style="background-color: #e4deff; color: #7352ff"
+                >
+                    <i class="icon fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Gain de temps</h3>
+                    <div class="card-subtitle">
+                        Réduisez considérablement le temps nécessaire pour organiser et
+                        exécuter des campagnes
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div
+                        class="card-heading"
+                        style="background-color: #ffecde; color: #fd984e"
+                >
+                    <i class="icon fa fa-bar-chart" aria-hidden="true"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Analyses approfondies</h3>
+                    <div class="card-subtitle">
+                        Accédez à des données précieuses pour améliorer l'efficacité des
+                        campagnes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End::Advantages Section-->
+
+    <div
+            class="container"
+            style="
+          background: #86d1bb;
+          background: -webkit-linear-gradient(to left, #dcf9ef, #86d1bb);
+          background: linear-gradient(to left, #dcf9ef, #86d1bb);
+        "
+    >
+        <div id="content" class="animated-section">
+            <div class="user-testimonial">
+                <blockquote>
+                    Grâce à Prizy, nous avons pu simplifier et optimiser l'ensemble de
+                    notre processus. Leur plateforme intuitive et facile à utiliser
+                    nous a permis de gérer efficacement les différentes étapes de
+                    notre opération marketing. La collecte des participations s'est
+                    déroulée sans accroc, et la distribution des prix s'est faite de
+                    manière fluide et rapide, ce qui a grandement contribué à la
+                    satisfaction de nos clients.
+                    <br /><br />
+                    La réactivité et le professionnalisme de l'équipe Prizy ont
+                    également été des atouts majeurs. Toujours disponibles pour
+                    répondre à nos questions et celles de nos clients, et ainsi
+                    apporter des solutions adaptées et un support quotidien, ils ont
+                    su s'adapter à nos besoins spécifiques et nous offrir un service
+                    sur-mesure.
+                    <br /><br />
+                    En conclusion, notre collaboration avec Prizy a été une véritable
+                    réussite. Leur expertise et leur support ont été indispensables
+                    pour la réussite de notre campagne de fidélité clients, et nous ne
+                    pouvons que recommander leur service à toutes les entreprises
+                    cherchant à améliorer leurs opérations de trade marketing.
+                </blockquote>
+                <div></div>
+            </div>
+            <div class="userdetails">
+                <div class="imgbox">
+                    <img
+                            src="assets/images/anis-menachi.jpeg"
+                            alt="Anis Menachi - Photo de profil"
+                    />
+                </div>
+                <div class="detbox">
+                    <p class="name">Anis Manachi</p>
+                    <p class="designation">
+                        Middle East and East Africa Marketing Manager - Lesaffre Gulf
+                        FZE
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Begin::Form Section-->
+    <section class="leftRightContainer p-5 animated-section" id="demo">
+        <div class="heading">
+            <div class="tag">Démo</div>
+            <h1 class="title">
+                <span>Demandez votre démo gratuite</span>
+            </h1>
+            <p class="paragraph">
+                <i class="pink fa fa-check-circle" aria-hidden="true"></i
+                >&nbsp; Profiter de l'opportunité de voir Prizy WinBox en action
+            </p>
+            <p class="paragraph">
+                <i class="pink fa fa-check-circle" aria-hidden="true"></i
+                >&nbsp; Découvrir comment notre plateforme peut transformer vos
+                campagnes de trade marketing
+            </p>
+            <p class="paragraph">
+                <i class="pink fa fa-check-circle" aria-hidden="true"></i
+                >&nbsp; Améliorer et simplifier la gestion de vos campagnes
+            </p>
+        </div>
+        {{ form_start(form, {'attr': {'class': 'form-container'},'action': path('outbound')}) }}
+        <div class="form-input">
+            <label class="form-label" for="{{ form.full_name.vars.id }}">
+                {{ form_label(form.full_name) }}
+            </label>
+            {{ form_widget(form.full_name, {'attr': {'class': 'input', 'placeholder': 'Votre nom & prénom'}}) }}
+            {{ form_errors(form.full_name) }}
+        </div>
+        <div class="form-input">
+            <label class="form-label" for="{{ form.email.vars.id }}">
+                {{ form_label(form.email) }}
+            </label>
+            {{ form_widget(form.email, {'attr': {'class': 'input', 'placeholder': 'Votre adresse e-mail'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+        <div class="form-input">
+            <label class="form-label" for="{{ form.phone.vars.id }}">
+                {{ form_label(form.phone) }}
+            </label>
+            {{ form_widget(form.phone, {'attr': {'class': 'input', 'placeholder': 'Votre numéro de téléphone'}}) }}
+            {{ form_errors(form.phone) }}
+        </div>
+        <div class="form-input">
+            <label class="form-label" for="{{ form.company.vars.id }}">
+                {{ form_label(form.company) }}
+            </label>
+            {{ form_widget(form.company, {'attr': {'class': 'input', 'placeholder': 'Votre entreprise'}}) }}
+            {{ form_errors(form.company) }}
+        </div>
+        <div class="form-checkbox">
+            {{ form_widget(form.consent) }}
+            <label for="{{ form.consent.vars.id }}">
+                En cochant cette case, vous acceptez que vos données soient
+                traitées par Prizy et d’être recontacté. Vous pouvez consulter
+                notre Politique de confidentialité
+            </label>
+            {{ form_errors(form.consent) }}
+        </div>
+        {{ form_widget(form.submit) }}
+        {{ form_end(form) }}
+    </section>
+    <!--End::Form Section-->
+
+    <!--Begin::Footer Section-->
+    <footer class="container" id="contact">
+        <div class="row p-5">
+            <div class="column">
+                <div>
+                    <img
+                            class="logo"
+                            alt=""
+                            src="https://prizy.co/static/media/logoblanc.bd33e93c33db00e919e8.png"
+                    />
+                </div>
+
+                <div>Incentive, Rewards, Loyalty.</div>
+                <div>Simplifiez vos campagnes de trade marketing avec Prizy.</div>
+
+                <br />
+                <div>
+                    <span>E-mail : </span>
+                    <a href="mailto:contact@prizy.co" class="footer-link"
+                    >contact@prizy.co</a
+                    >
+                </div>
+                <div>
+                    <span>Tél : </span>
+                    <a href="tel:0550576644" class="footer-link"
+                    >(+213) 550 57 66 44</a
+                    >
+                </div>
+            </div>
+            <div class="column">
+                <div class="heading">Sections</div>
+                <div class="footer-links">
+                    <a href="#product" class="footer-link">Produit</a>
+                    <a href="#features" class="footer-link">Fonctionnalités</a>
+                    <a href="#advantages" class="footer-link">Avantages</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="heading">Contactez-nous</div>
+                <div class="footer-links">
+                    <a
+                            href="https://www.linkedin.com/company/fixitplus/"
+                            target="_blank"
+                            class="social-contact fa fa-linkedin"
+                    ></a>
+                    <a
+                            href="https://www.instagram.com/prizy.co/"
+                            target="_blank"
+                            class="social-contact fa fa-instagram"
+                    ></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyrights">
+            <div class="text">© Prizy 2024. Tous droits réservés.</div>
+        </div>
+    </footer>
+{% endblock %}

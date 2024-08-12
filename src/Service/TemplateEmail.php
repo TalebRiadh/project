@@ -46,6 +46,7 @@ class TemplateEmail
                 'prenom' => $prenom,
                 'canal' => $canal,
                 'file' => $fileData,
+                'url' => $this->params->get('APP_URL')
             ]);
 
         if ($fileData !== null) {

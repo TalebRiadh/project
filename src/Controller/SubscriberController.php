@@ -11,32 +11,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SubscriberController extends AbstractController
 {
-    #[Route('/subscribe/{canal}', name: 'subscriber')]
-    public function subscribe(Request $request, DocumentManager $dm, MessageBusInterface $bus, string $canal): Response
+    #[Route('/outbound', name: 'outbound')]
+    public function Outbound(Request $request, DocumentManager $dm, MessageBusInterface $bus, ValidatorInterface $validator): Response
     {
         $subscriber = new Subscriber();
-        $form = $this->createForm(SubscriberType::class, $subscriber, ['canal' => $canal]);
+        $form = $this->createForm(SubscriberType::class, $subscriber, ['canal' => 'out']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $dm->persist($subscriber);
             $dm->flush();
-
             try {
-                $bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getPrenom(), $subscriber->getCanal()));
+                $bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getFullname(), $subscriber->getCanal()));
             } catch (ExceptionInterface $e) {
                 $this->addFlash('error', 'Erreur lors de l\'envoi de l\'email');
+                return $this->redirectToRoute('outbound');
             }
-
             $this->addFlash('success', 'Inscription réussie');
-            return $this->redirectToRoute('subscriber', ['canal' => $canal]);
+            return $this->redirectToRoute('outbound');
         }
 
-        return $this->render('subscription/form.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render('subscription/page.html.twig', [
+                'form' => $form->createView(),
+            ]);
     }
 }

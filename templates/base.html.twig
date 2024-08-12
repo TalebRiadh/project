@@ -5,15 +5,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>{% block title %}Souscription{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ asset('assets/icons/favicon.ico') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('assets/icons/logo192.png') }}" />
+
+    <title>Prizy Winbox | Transformez vos campagnes de trade marketing</title>
+    <meta
+            name="description"
+            content="Simplifiez vos campagnes de trade marketing avec Prizy. Augmentez vos ventes, renforcez la notoriété de votre marque et engagez vos clients grâce à la génération de codes gagnants uniques, une landing page personnalisée, un suivi centralisé des participants, et une distribution facile des récompenses, qu'elles soient physiques ou numériques"
+    />
+    <meta
+            name="keywords"
+            content="trade marketing, campagnes marketing, génération de codes gagnants, landing page personnalisée, suivi des participants, distribution des récompenses, cartes-cadeaux numériques, augmentation des ventes, notoriété de la marque, engagement client"
+    />
+
+    <link rel="canonical" href="https://winbox.prizy.co" />
+
+    <meta
+            property="og:title"
+            content="Prizy Winbox - Transformez vos campagnes de trade marketing"
+    />
+    <meta
+            property="og:site_name"
+            content="Prizy Winbox | Transformez vos campagnes de trade marketing"
+    />
+    <meta
+            property="og:description"
+            content="Simplifiez vos campagnes de trade marketing avec Prizy. Augmentez vos ventes, renforcez la notoriété de votre marque et engagez vos clients grâce à la génération de codes gagnants uniques, une landing page personnalisée, un suivi centralisé des participants, et une distribution facile des récompenses, qu'elles soient physiques ou numériques"
+    />
+    <meta property="og:url" content="https://winbox.prizy.co" />
+    <meta property="og:image" content="https://prizy.co/static/media/logo.96f3c9d0096764bb92da.png" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+            name="twitter:title"
+            content="Prizy Winbox | Transformez vos campagnes de trade marketing"
+    />
+    <meta
+            name="twitter:description"
+            content="Simplifiez vos campagnes de trade marketing avec Prizy. Augmentez vos ventes, renforcez la notoriété de votre marque et engagez vos clients grâce à la génération de codes gagnants uniques, une landing page personnalisée, un suivi centralisé des participants, et une distribution facile des récompenses, qu'elles soient physiques ou numériques"
+    />
+    <meta
+            name="twitter:image"
+            content="https://prizy.co/static/media/logo.96f3c9d0096764bb92da.png"
+    />
+
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <link rel="alternate" href="https://winbox.prizy.co" hreflang="fr" />
+    <link rel="alternate" href="https://winbox.prizy.co" hreflang="en" />
+    <link rel="shortlink" href="https://winbox.prizy.co" />
+
+    <meta name="theme-color" content="#e39dca" />
+
+    <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Prizy Winbox | Transformez vos campagnes de trade marketing",
+            "description": "Simplifiez vos campagnes de trade marketing avec Prizy. Augmentez vos ventes, renforcez la notoriété de votre marque et engagez vos clients grâce à la génération de codes gagnants uniques, une landing page personnalisée, un suivi centralisé des participants, et une distribution facile des récompenses, qu'elles soient physiques ou numériques",
+            "url": "https://winbox.prizy.co"
+        }
+    </script>
+
+    <link rel="stylesheet" href="{{ asset('assets/styles/style.css') }}" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@700&display=swap"
+    />
+
+    <!-- Google Search Console -->
+    <meta
+            name="google-site-verification"
+            content="GHTXlSIy1C25wX7Z1z7-FIEoRmNDik4snlkZaG0OV3s"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-0Y3GSQMLQ5"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-0Y3GSQMLQ5");
+    </script>
 </head>
 <body>
-<div class="container">
+<div class="landing-page">
     {% block body %}{% endblock %}
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<script>
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                }
+            });
+        },
+        {
+            rootMargin: "0px",
+            threshold: [0, 0.1, 1],
+        }
+    );
+
+    const tags = document.querySelectorAll(".animated-section");
+
+    tags.forEach((tag) => {
+        observer.observe(tag);
+    });
+</script>
 </html>

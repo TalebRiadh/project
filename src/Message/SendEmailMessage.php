@@ -4,7 +4,7 @@ namespace App\Message;
 class SendEmailMessage
 {
 
-    public function __construct(private readonly string $email, private readonly string $prenom, private readonly string $canal)
+    public function __construct(private readonly string $email, private readonly string $fullname, private readonly string $canal)
     {
 
     }
@@ -14,9 +14,9 @@ class SendEmailMessage
         return $this->email;
     }
 
-    public function getPrenom(): string
+    public function getFullname(): string
     {
-        return $this->prenom;
+        return $this->fullname;
     }
 
     public function getCanal(): string

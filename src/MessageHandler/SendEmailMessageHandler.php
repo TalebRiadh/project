@@ -21,7 +21,7 @@ class SendEmailMessageHandler
         $this->logger->info('Starting email send process');
 
         try {
-            $email = $this->templateEmail->createEmail($message->getEmail(), $message->getPrenom(), $message->getCanal());
+            $email = $this->templateEmail->createEmail($message->getEmail(), $message->getFullname(), $message->getCanal());
 
             $this->logger->info('Sending email to ' . $message->getEmail());
             $this->templateEmail->sendEmail($email);

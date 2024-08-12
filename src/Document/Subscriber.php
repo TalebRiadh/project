@@ -24,14 +24,27 @@ class Subscriber
     private string $email;
 
     #[MongoDB\Field(type: "string")]
-    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
-    private string $nom;
-    #[MongoDB\Field(type: "string")]
-    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
-    private string $prenom;
+    #[Assert\NotBlank(message: "Le nom et le prénom est obligatoire.")]
+    private string $fullname;
 
     #[MongoDB\Field(type: "string")]
-    private ?string $tel;
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Regex(pattern: "/^(\+213|0)[1-9](\d{2}){4}$/", message: "Le numéro de téléphone n'est pas valide.")]
+    private ?string $phone;
+
+    #[MongoDB\Field(type: "string")]
+    #[Assert\NotBlank(message: "Le nom d'entreprise est obligatoire.")]
+    private ?string $company;
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?string $company): void
+    {
+        $this->company = $company;
+    }
 
     #[MongoDB\Field(type: "string")]
     #[Assert\Choice(choices: self::CANAL_CHOICES ,message: "le canal n'est pas valide.")]
@@ -69,27 +82,16 @@ class Subscriber
         return $this;
     }
 
-    public function getNom(): string
+    public function getFullname(): string
     {
-        return $this->nom;
+        return $this->fullname;
     }
 
 
-    public function setNom(string $nom): void
+    public function setFullname(string $fullname): void
     {
-        $this->nom = $nom;
+        $this->fullname = $fullname;
     }
-
-    public function getPrenom(): string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): void
-    {
-        $this->prenom = $prenom;
-    }
-
 
     public function getCanal(): string
     {
@@ -105,16 +107,16 @@ class Subscriber
     /**
      * @return string
      */
-    public function getTel(): string
+    public function getPhone(): string
     {
-        return $this->tel;
+        return $this->phone;
     }
 
     /**
-     * @param null|string $tel
+     * @param null|string $phone
      */
-    public function setTel(?string $tel): void
+    public function setPhone(?string $phone): void
     {
-        $this->tel = $tel;
+        $this->phone = $phone;
     }
 }
