@@ -31,7 +31,7 @@ class SubscriberType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Adresse e-mail *',
                 'attr' => [
-                    'placeholder' => 'Votre adresse e-mail',
+                    'placeholder' => 'Exemple: contact@prizy.co',
                     'class' => 'input',
                     'id' => 'email'
                 ],
@@ -40,7 +40,9 @@ class SubscriberType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Numéro de téléphone *',
                 'attr' => [
-                    'placeholder' => 'Votre numéro de téléphone',
+                    'placeholder' => 'Exemple: +213550576644 ou 0550576644',
+                    'pattern'=>"^(\\+213|0)[1-9](\\d{2}){4}$",
+                    'type' => 'tel',
                     'class' => 'input',
                     'id' => 'phone'
                 ],
@@ -49,14 +51,15 @@ class SubscriberType extends AbstractType
             ->add('company', TextType::class, [
                 'label' => 'Entreprise *',
                 'attr' => [
-                    'placeholder' => 'Votre entreprise',
+                    'placeholder' => 'Nom de l\'entreprise où tu travailles',
                     'class' => 'input',
                     'id' => 'company'
                 ],
                 'required' => true,
             ])
             ->add('consent', CheckboxType::class, [
-                'label' => 'En cochant cette case, vous acceptez que vos données soient traitées par Prizy et d’être recontacté. Vous pouvez consulter notre Politique de confidentialité',
+                'label' => 'En cochant cette case, tu acceptes que tes données soient traitées
+                            par Prizy et d’être recontacté.',
                 'required' => true,
                 'mapped' => false,
                 'attr' => [

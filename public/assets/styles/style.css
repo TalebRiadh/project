@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "Galano Grotesque";
   font-weight: 100;
@@ -28,8 +27,6 @@
   font-weight: 900;
   src: url("../fonts/GalanoGrotesqueBlack.otf") format("truetype");
 }
-
-
 
 :root {
   /* fonts */
@@ -81,8 +78,6 @@
   font-family: var(--font-galano-grotesque);
 }
 
-
-
 html {
   scroll-behavior: smooth;
 }
@@ -110,7 +105,7 @@ body {
 }
 /*End::Animation on scroll*/
 
-/* Style all font awesome icons */
+/* Begin::Font awesome icons */
 .social-contact {
   padding: 10px;
   font-size: 20px;
@@ -124,24 +119,23 @@ body {
   border-radius: var(--br-xl);
 }
 
-/* Add a hover effect if you want */
 .social-contact:hover {
   opacity: 0.7;
 }
 
-/* Set a specific color for each brand */
-
-/* Facebook */
+/* LinkedIn */
 .fa-linkedin {
   background: #0e76a8;
   color: white;
 }
 
-/* Twitter */
+/* Instagram */
 .fa-instagram {
   background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
   color: white;
 }
+
+/* End::Font awesome icons */
 
 /*Begin::Header*/
 .header {
@@ -194,11 +188,10 @@ body {
   justify-content: center;
   white-space: nowrap;
 
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.3rem;
 
   text-transform: uppercase;
   text-decoration: none;
-  font-size: var(--font-size-p-r);
   line-height: var(--line-height-p);
   font-weight: 500;
 
@@ -206,14 +199,18 @@ body {
 }
 
 .default-button {
+  padding: 0.6rem 1.3rem;
+  font-size: var(--font-size-p);
   color: var(--color-white);
   background-color: var(--base-black);
 }
-.default-button:hover {
+.scale:hover {
   transform: scale(1.1) perspective(1px);
 }
 
 .outlined-button {
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-p-r);
   border: 1px solid var(--base-black);
   background-color: transparent;
   color: var(--base-black);
@@ -224,10 +221,12 @@ body {
 }
 /*End::Header*/
 
-.text {
+.text,.copyright {
   text-decoration: none;
   font-size: var(--font-size-ps);
-  line-height: var(--line-height-p);
+}
+
+.copyright {
   color: var(--color-white);
 }
 
@@ -250,7 +249,7 @@ body {
   gap: 2rem;
   width: 100%;
 }
-.leftRightContainer {
+.left-right-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -258,7 +257,6 @@ body {
   text-align: left;
   gap: 5rem;
   width: 100%;
-  height: 100vh;
 }
 
 .p-5 {
@@ -403,6 +401,7 @@ body {
   gap: 0.2rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transition: all 0.2s ease-in-out;
+  width: 100%;
 }
 .feature-item:hover {
   transform: scale(1.05);
@@ -699,7 +698,7 @@ hr.solid {
   .testimonial-container {
     padding: 1.5rem;
   }
-  .leftRightContainer {
+  .left-right-container {
     flex-direction: column;
     gap: 2rem;
   }
@@ -723,7 +722,11 @@ hr.solid {
     display: none;
     font-size: var(--font-size-p-r);
   }
-  .text {
+  .text,.copyright,
+  .default-button,
+  .outlined-button,
+  .card-subtitle,
+  .feature-content {
     font-size: var(--font-size-p-r);
   }
   .subtitle {
@@ -735,15 +738,11 @@ hr.solid {
   .card-title {
     font-size: var(--font-size-3-r);
   }
-  .card-subtitle {
-    font-size: var(--font-size-p-r);
-  }
+
   .feature-title {
     font-size: var(--font-size-3-r);
   }
-  .feature-content {
-    font-size: var(--font-size-p-r);
-  }
+
   .testimonial {
     font-size: var(--font-size-3-h);
   }
@@ -805,5 +804,20 @@ hr.solid {
 :checked + .alert {
   display: none;
 }
-
 /*Alert*/
+.small-text {
+    font-size: 0.7rem;
+}
+/* Smaller font size for screens smaller than 768px (e.g., tablets and mobile devices) */
+@media (max-width: 977px) {
+  #subscriber_company::placeholder, #subscriber_phone::placeholder {
+    font-size: 10px;
+  }
+}
+
+/* Even smaller font size for screens smaller than 480px (e.g., small mobile devices) */
+@media (max-width: 480px) {
+  #subscriber_company::placeholder, #subscriber_phone::placeholder {
+    font-size: 11px;
+  }
+}
