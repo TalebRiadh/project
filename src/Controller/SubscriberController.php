@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class SubscriberController extends AbstractController
 {
     #[Route('/', name: 'outbound')]
-    public function Outbound(Request $request,TemplateEmail $templateEmail, DocumentManager $dm, MessageBusInterface $bus, ValidatorInterface $validator): Response
+    public function Outbound(Request $request, DocumentManager $dm, MessageBusInterface $bus, ValidatorInterface $validator): Response
     {
         $subscriber = new Subscriber();
         $form = $this->createForm(SubscriberType::class, $subscriber, ['canal' => 'out']);
@@ -26,9 +26,7 @@ class SubscriberController extends AbstractController
             $dm->persist($subscriber);
             $dm->flush();
             try {
-                $email = $templateEmail->createEmail($subscriber->getEmail(), $subscriber->getFullname(), $subscriber->getCanal());
-                $templateEmail->sendEmail($email);
-                //$bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getFullname(), $subscriber->getCanal()));
+                $bus->dispatch(new SendEmailMessage($subscriber->getEmail(), $subscriber->getFullname(), $subscriber->getCanal()));
             } catch (ExceptionInterface $e) {
                 $this->addFlash('error', 'Erreur lors de l\'envoi de l\'email');
                 return $this->redirectToRoute('outbound');

@@ -40,7 +40,7 @@ class TemplateEmail
         $email = (new TemplatedEmail())
             ->from(new Address('contact@prizy.co', 'Prizy.co'))
             ->to(new Address($email))
-            ->subject('no-reply')
+            ->subject('Planifiez votre démo de Prizy Winbox.')
             ->htmlTemplate($template)
             ->context([
                 'prenom' => $prenom,
